@@ -1,0 +1,120 @@
+<ul class="sidenav sidenav-fixed a-sidenav">
+    <h4>iTexno</h4>
+    <div class="user_info"
+    *ngFor="let users of user"
+    >
+      <div class="user_img"
+      >
+          <img class="user_img circle" src="{{users.imgSrc}}" alt="">
+      </div>
+      <span class="user_name ">{{users.name}}     
+        <a class=" cyan waves-effect lighten-1s waves-light btn btn-floating" (click)="open()">
+        <i  class="small material-icons">person</i></a></span>
+  </div>
+    <li
+      class="bold"
+      *ngFor="let link of links"
+      routerLinkActive="active"
+    >
+    <div class="link_box waves-effect waves-orange" [routerLink]="[link.url]" *ngIf="link.activ">
+    <i style="display: inline-block;" class="small  material-icons default">{{link.icon}}</i>
+      <a style="display: inline-block;" >
+        {{link.name}}
+      </a>
+    </div>
+    </li>
+  
+    <li class="bold last">
+      <a href="#" class="waves-effect waves-orange" (click)="logout($event)">Выйти</a>
+    </li>
+  </ul>
+  
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <div class="fixed-action-btn"(click)="currency()" #floating>
+    <a class="btn-floating btn-large red pulse"  >
+      <i class="large material-icons">euro_symbol</i>
+    </a>
+  </div>
+  
+  
+  <a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">info</i></a>
+  <div class="exchange" *ngIf="exchang">
+  <iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:391px" scrolling="no" src="https://fortrader.org/informers/getInformer?st=8&cat=7&title=%D0%9A%D1%83%D1%80%D1%81%D1%8B%20%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%20%D0%A6%D0%91%20%D0%A0%D0%A4&texts=%7B%22toolTitle%22%3A%22%D0%92%D0%B0%D0%BB%D1%8E%D1%82%D0%B0%22%2C%22todayCourse%22%3A%22RUB%22%7D&mult=1.04&showGetBtn=0&hideHeader=0&hideDate=0&w=0&codes=1&colors=false&items=2%2C21%2C30%2C11%2C14&columns=todayCourse&toCur=11111"></iframe>
+  </div>
+
+  <div #modal class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 class="mb1">Редактировать профиль</h4>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="modal_content_box"
+      *ngFor="let users of user"
+      >
+        <div class="updated_info">
+          <div class="card-content">
+            <div class="input-field" *ngIf="disbl">
+                <input formControlName="email"  type="email"
+                [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+                >
+                <label for="email">Email:</label>
+                <span
+                class="helper-text red-text"
+                *ngIf="form.get('email').invalid && form.get('email').touched"
+              >
+              <span *ngIf="form.get('email').errors['required']">Email не должен быть пустым</span>
+              <span *ngIf="form.get('email').errors['email']">Введите корректный email адрес</span>
+            </span>
+            </div>
+            <div class="input-field">
+                <input formControlName="name"  type="text">
+                <label for="password">Имя</label>
+                <span
+                class="helper-text red-text"
+                *ngIf="form.get('name').invalid && form.get('name').touched"
+              >
+                <span *ngIf="form.get('name').errors['required']">Имя не должен быть пустым</span>
+              </span>
+            </div>
+        </div>
+
+        </div> 
+        <div class="updated_img"> 
+          <div class="user_img">
+              <img class="user_img" 
+              [src]="imagePreview"
+              *ngIf="imagePreview" alt="">
+              <input
+              type="file"
+              style="display: none;"
+              #input
+              (change)="onFileUpload($event)"
+              >
+              <button (click)="triggerClick()" 
+              type="button"
+              class="waves-effect waves-light btn orange lighten-2 mb2">
+                <i class="material-icons left">backup</i>
+                Загрузить изображение
+            </button>
+          </div>
+        </div> 
+     
+         
+       
+      </div>
+      <div class="foter_modal">
+      <button
+      type="button"
+      class="modal-action left_modal_btn btn waves-effect waves-black btn-flat"
+      (click)="close()"
+    >Отмена</button>
+    <button
+      class="modal-action btn waves-effect blue lighten-2"
+      type="submit"
+    >Подтвердить изменения</button>
+  </div>
+  </form>
+    </div>
+  </div>
+  

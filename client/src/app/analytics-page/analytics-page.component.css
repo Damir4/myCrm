@@ -1,0 +1,10 @@
+.analitic_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.analitic_nav a{
+   width: 150px;
+}

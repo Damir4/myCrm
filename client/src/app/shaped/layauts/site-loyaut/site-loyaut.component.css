@@ -1,0 +1,8 @@
+.link_box{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.link_box a{
+    margin-left: 25px;
+}

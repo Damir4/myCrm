@@ -1,0 +1,15 @@
+.main_content{
+        height: 100vh;
+        width: 100vw;
+        background-image: url(./crm_розница_flexbby_2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+h2{     
+        color: white;
+        font-size: 120px;
+        display: inline-block;
+        margin-left: 50%;
+        margin-top: -70px;
+}

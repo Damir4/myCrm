@@ -1,0 +1,29 @@
+<div class="analitic_nav">
+<a class="waves-effect waves-light btn blue lighten-2" (click)="onWeek()">Неделя</a>
+<a class="waves-effect waves-light btn blue lighten-2"(click)="onMonth()">Месяц</a>
+<a class="waves-effect waves-light btn blue lighten-2" (click)="onQuart()">Квартал</a>
+<a class="waves-effect waves-light btn blue lighten-2" (click)="onHalf()">Полугодие</a>
+<a class="waves-effect waves-light btn blue lighten-2" (click)="onYear()">Год</a>
+</div>
+<hr>
+<div class="page-title">
+  <h4>Аналитика за {{title}}</h4>
+</div>
+
+<div [style.display]="pending ? 'none' : 'block'">
+  <div class="average-price">
+    <p>Средний чек <strong>{{average}} р.</strong></p>
+  </div>
+
+  <div class="analytics-block pb3">
+    <h5>Выручка</h5>
+    <canvas #gain></canvas>
+  </div>
+
+  <div class="analytics-block">
+    <h5>Заказы</h5>
+    <canvas #order></canvas>
+  </div>
+</div>
+
+<app-preloader *ngIf="pending"></app-preloader>
